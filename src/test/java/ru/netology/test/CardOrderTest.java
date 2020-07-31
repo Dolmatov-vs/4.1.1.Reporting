@@ -1,6 +1,8 @@
 package ru.netology.test;
 
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.selenide.AllureSelenide;
 import lombok.val;
 import org.junit.jupiter.api.*;
 
@@ -25,6 +27,15 @@ public class CardOrderTest {
     SelenideElement checkbox = $("[data-test-id=agreement]");
     SelenideElement bookButton = $$(".form button").find(text("Запланировать"));
     SelenideElement rescheduling = $("[data-test-id='replan-notification']");
+
+    @BeforeAll
+    static void setUpAll() {
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide().screenshots(true).savePageSource(true));
+    }
+    @AfterAll
+    static void tearDownAll(){
+        SelenideLogger.removeListener("AllureSelenide");
+    }
 
     @BeforeEach
     void setUp() {
