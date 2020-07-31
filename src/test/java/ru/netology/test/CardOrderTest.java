@@ -30,7 +30,7 @@ public class CardOrderTest {
 
     @BeforeAll
     static void setUpAll() {
-        SelenideLogger.addListener("AllureSelenide", new AllureSelenide().screenshots(true).savePageSource(true));
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
     }
     @AfterAll
     static void tearDownAll(){
